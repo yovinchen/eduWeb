@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/login.css"/>
+    <script src="../../js/axios.min.js"></script>
+    <script src="../../js/vue.js"></script>
+</head>
+
+<body>
+<q id="app">
+    <div class="pos">
+        <div class="login">
+            <span class="close iconfont icon-close"></span>
+            <img src="../../img/login/loginlogo.png" alt="">
+            <ul>
+                <li></li>
+                <li class="phone">使用手机号登陆</li>
+                <li></li>
+            </ul>
+
+            <input type="text" name="tel" v-model="phone" class="tel" id="" placeholder="请输入您的手机号">
+            <input type="password" name="pass" v-model="password" class="pass" id="" placeholder="请输入密码">
+            <em></em>
+            <button class="loginbtn" @click="login()">
+                登陆
+            </button>
+
+            <p>
+                <span><a href="javascript:;">忘记密码</a></span>
+                <span>
+                    还没有账号?
+                    <a href="./register.html">点击注册</a>
+                </span>
+            </p>
+            <ul>
+                <li></li>
+                <li class="phone">使用第三方软件登录</li>
+                <li></li>
+            </ul>
+            <p class="getCenter">
+                <img src="../../img/login/wx.png" alt="">
+                <img src="../../img/login/qq.png" alt="">
+                <img src="../../img/login/sina.png" alt="">
+            </p>
+        </div>
+    </div>
+</q>
+<script src="../../utils/utils.js"></script>
+<script src="../../js/login.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            phone: '',
+            password: '',
+            user: {}
+        }, methods: {
+            login() {
+                var formData = new FormData();
+                formData.append("phone", this.phone);
+                formData.append("password", this.password);
+                axios.post('http://localhost:8001/edu/user/login', formData)
+                    .then(res => {
+                        //获取服务器返回的用户数据对象
+                        this.user = res.data;
+                        console.log(res);
+                        //判断用户是否为空
+                        if (this.user == "") {
+                            alert("用户不存在");
+                        } else {
+                            //把读取到用户名写入到本地存储
+                            localStorage.setItem("username", this.user.username);
+                            alert("登录成功")
+                            //跳转到首页
+                            location.href = "../../index.html"
+                        }
+
+                    }).catch(err => {
+                    alert("登录失败" + err)
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

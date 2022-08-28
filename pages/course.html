@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账户设置</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2384888_ojge9md3tr.css
+    ">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/course.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+
+<body>
+<span id="app">
+    <!-- 导航菜单 -->
+    <nav>
+        <div class="main">
+            <img src="../img/index/logo.png" alt="" class="logo">
+            <ul class="">
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./online.html?typeId=1">Java</a></li>
+                <li><a href="./online.html?typeId=2">Mysql</a></li>
+                <li><a href="./online.html?typeId=3">Web</a></li>
+            </ul>
+            <div class="search">
+                <div class="left">课程<i class="iconfont icon-down"></i>
+                </div>
+                <input type="text" placeholder="搜索感兴趣的内容">
+                <img src="../img/index/search.png" alt="">
+            </div>
+            <div class="user">
+                <img src="../img/login/user.png" alt="">
+                <div class="userlist">
+                    <ul>
+                        <li>我是用户名</li>
+                        <li>我的课程</li>
+                        <li><a>订单中心</a></li>
+                        <li>资金管理</li>
+                        <li><a href="./userSeting.html">个人中心</a></li>
+                        <li class="out">退出登陆</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 主体内容 -->
+    <main>
+        <div class="leftNav" id="leftNav">
+            <ul>
+                <li class="list">
+                    <p class="class">
+                        <span>课程中心</span>
+                        <i><img src="../img/userSet/ico2.gif"/></i>
+                    </p>
+                    <ol>
+                        <li class="select"><a href="./course.html" class="active">我的课程</a></li>
+                        <li class="select">我的练习</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="order">
+                        <span>订单中心</span>
+                        <i><img src="../img/userSet/ico2.gif"/></i>
+                    </p>
+                    <ol>
+                        <li class="select">我的订单</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="money">
+                        <span>资金管理</span>
+                        <i><img src="../img/userSet/ico2.gif"/></i>
+                    </p>
+                    <ol>
+                        <li class="select">我的钱包</li>
+                        <li class="select">优惠券</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="center">
+                        <span>个人中心</span>
+                        <i><img src="../img/userSet/ico2.gif"/></i>
+                    </p>
+                    <ol>
+                        <li class="select ">账户设置</li>
+                        <li class="select">我的消息</li>
+                        <li class="select">我的评价</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="rightUser">
+            <div class="title_top">
+                <span>账户设置</span>
+                <span>&gt;</span>
+                <span>我的课程</span>
+            </div>
+            <!-- 课程列表 -->
+            <div class="lesson ">
+                <ul class="clearfix">
+                    <li v-for="d in datas" @click="toDetail(d.cid)">
+
+                            <div class="top">
+                                <img :src="'.'+d.courseImage" alt="" class="m">
+                                <p>1100人在学习</p>
+                            </div>
+                            <div class="bottom clearfix">
+                                <div class="left fl">
+                                    <span>{{d.courseName}}</span>
+                                    <span class="time">23课时</span>
+                                </div>
+                                <div class="right fr">去学习</div>
+                            </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </main>
+    </span>
+<!-- 底部栏 -->
+<footer>
+    <div class="cont">
+        <div class="main">
+            <p>
+                首页 | 关于我们 | 加入我们 | 合作专区 | 联系我们 | AI开放平台 | 意见反馈 | 漏洞提交 | 隐私政策 | 版权声明 | 反盗链声明 | 网上有害信息举报 | 备案公示 | 营业执照
+                | 教师资格证公示
+
+            </p>
+            <p>
+                京ICP备 13030888号 Copyright © 2014-2019 行者信息科技（北京）有限公司 | 地址：北京市新华区马当路388号C座 | 电话：010-66666666 | 京公网安备
+                01010102002533号
+            </p>
+            <p>
+                京网文〔2018〕4086-308号 | 网络文化经营许可证：沪网文[2018]4086-308号 | 增值电信业务经营许可证：京B2-20150021 |
+                食品经营许可证：JY13101140088888
+            </p>
+            <p>医疗器械经营许可证：京嘉食药监械经营许20188008号 | 互联网药品信息服务资格证书：(京)-经营性-2018-0011 |</p>
+        </div>
+    </div>
+</footer>
+
+<!-- 固定导航 -->
+<div class="fix">
+    <div class="lesson">
+        <img src="../img/index/mylesson.png" alt="">
+    </div>
+    <div class="test">
+        <img src="../img/index/mytest.png" alt="">
+    </div>
+    <div class="top">
+        <img src="../img/index/gotop.png" alt="">
+    </div>
+</div>
+<script src="../js/userSeting.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            datas: []
+        },
+        methods: {
+            load_data() {
+                var username = localStorage.getItem("username");
+                axios.get('http://localhost:8001/edu/course/user/' + username)
+                    .then(res => {
+                        this.datas = res.data;
+                    })
+            },
+            //跳转到课程详情页面
+            toDetail(cid) {
+                location.href = "videoDetail.html?cid=" + cid;
+
+            }
+        }, created() {
+            this.load_data();
+        }
+    })
+</script>
+</body>
+
+</html>

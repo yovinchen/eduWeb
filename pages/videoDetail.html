@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频详情</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2384888_ojge9md3tr.css
+    ">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/videoDetail.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+
+<body>
+<q id="app">
+    <!-- 导航菜单 -->
+    <nav>
+        <div class="main">
+            <img src="../img/public/logo.png" alt="" class="logo">
+            <ul>
+                <li><a href="../index.html">首页</a></li>
+                <li :class="check1"><a href="./online.html?typeId=1">Java</a></li>
+                <li :class="check2"><a href="./online.html?typeId=2">Mysql</a></li>
+                <li :class="check3"><a href="./online.html?typeId=3">Web</a></li>
+            </ul>
+            <div class="search">
+                <div class="left">课程<i class="iconfont icon-down"></i>
+                </div>
+                <input type="text" v-model="keyword" placeholder="搜索感兴趣的内容">
+                <img src="../img/public/search.png" @click="toSearch()" alt="">
+            </div>
+            <div class="login">
+                <a href="./loginAndRegister/login.html">登陆</a>
+                /
+                <a href="./loginAndRegister/register.html">注册</a>
+            </div>
+            <div class="user">
+                <img src="../img/login/user.png" alt="">
+                <div class="userlist">
+                    <ul>
+                        <li>我是用户名</li>
+                        <li>课程中心</li>
+                        <li>订单中心</li>
+                        <li>资金管理</li>
+                        <li>个人中心</li>
+                        <li class="out">退出登陆</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="all">
+        <div class="crumbs">
+            <span>首页</span>
+            <span>></span>
+            <span>同步课堂</span>
+            <span>></span>
+            <span>{{course.courseName}}</span>
+        </div>
+    </div>
+    <!-- 主体内容 -->
+    <main>
+        <div class="classDetail">
+            <div class="left">
+                <img :src="'.'+course.courseImage" alt="">
+            </div>
+            <div class="right">
+                <p class="title">{{course.courseName}}</p>
+                <ul>
+                    <li>{{course.descs}}</li>
+                    <li>开课时间：{{course.createTime}}</li>
+                    <li>有效期至：2022年12月20日</li>
+                    <li>距报名截止仅剩</li>
+                    <li>
+                        <span>142</span>天
+                        <span>23</span>时
+                        <span>32</span>分
+                        <span>45</span>秒
+                    </li>
+                    <li class="price">
+                        <span>¥{{course.coursePrice}}</span>
+                        <span @click="toVideoPlay(coursedetailList[0].id)">免费试学</span>
+                    </li>
+                    <li class="sale" @click="toSaleCourse()">
+                        <span>¥{{course.coursePrice}}单独购买</span>
+                        <span>￥{{course.coursePrice}}拼团</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row introduce">
+            <!-- <p>授课师资</p>
+            <div class="left">
+                <p class="img">
+                    <img src="" alt="">
+                </p>
+                <p class="right">
+                    <span>李晓明</span>
+                    <span>小U课堂高级讲师</span>
+                </p>
+
+            </div>
+            <div class="right">
+                多年IT行业从业经验，精通常用的Web开发技术;熟悉主流的CMS、商城、论坛 等PHP开源产品，具有丰富的建站及二次开发经验，多个大型ERP系统的开发实践经验;精通常用的PHP开发框架，对服务器架构及服务器日常运维等方面有一 定的研究。
+            </div> -->
+        </div>
+        <div class="row title">
+            <span class="active">课程目录</span><span>课程详情</span>
+        </div>
+        <div class="classlist active">
+            <div class="content">
+                <div class="detail">
+                    <p class="title"><i class="iconfont icon-top1"></i></p>
+                    <ul class="active">
+                        <li v-for="cd in coursedetailList">
+                            <p>
+                                <i class="iconfont icon-bofang"></i>
+                                <span>{{cd.name}}</span>
+                            </p>
+                            <p>
+                                <span>2020.12.10 20：00开播</span>
+                                <span class="start">播放视频</span>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <span class="seeAll">点击展开查看全部</span>
+            </div>
+        </div>
+        <div class="classlist">
+            <img src="../img/videoDetail/detail.png" alt="">
+        </div>
+    </main>
+</q>
+<footer>
+    <div class="cont">
+        <div class="main">
+            <p>
+                首页 | 关于我们 | 加入我们 | 合作专区 | 联系我们 | AI开放平台 | 意见反馈 | 漏洞提交 | 隐私政策 | 版权声明 | 反盗链声明 | 网上有害信息举报 | 备案公示 | 营业执照
+                | 教师资格证公示
+
+            </p>
+            <p>
+                京ICP备 13030888号 Copyright © 2014-2019 行者信息科技（北京）有限公司 | 地址：北京市新华区马当路388号C座 | 电话：010-66666666 | 京公网安备
+                01010102002533号
+            </p>
+            <p>
+                京网文〔2018〕4086-308号 | 网络文化经营许可证：沪网文[2018]4086-308号 | 增值电信业务经营许可证：京B2-20150021 |
+                食品经营 许可证：JY13101140088888
+            </p>
+            <p>医疗器械经营许可证：京嘉食药监械经营许20188008号 | 互联网药品信息服务资格证书：(京)-经营性-2018-0011 |</p>
+        </div>
+    </div>
+</footer>
+
+<!--    <div class="pos">
+        <div class="login">
+            <span class="close iconfont icon-close"></span>
+            <img src="../img/login/loginlogo.png" alt="">
+            <ul>
+                <li></li>
+                <li class="phone">使用手机号登陆</li>
+                <li></li>
+            </ul>
+            <input type="text" name="" id="" placeholder="请输入您的手机号">
+            <input type="password" name="" id="" placeholder="请输入密码">
+            <button class="loginbtn">
+                登陆
+            </button>
+            <p>
+                <span><a href="javascript:;">忘记密码</a></span>
+                <span>
+                    还没有账号?
+                    <a href="javascript:;">点击注册</a>
+                </span>
+            </p>
+            <ul>
+                <li></li>
+                <li class="phone">使用第三方软件登录</li>
+                <li></li>
+            </ul>
+            <p class="getCenter">
+                <img src="../img/login/wx.png" alt=""><img src="../img/login/qq.png" alt=""><img
+                    src="../img/login/sina.png" alt="">
+            </p>
+        </div>
+    </div>-->
+
+<!--
+    Create by Shuangyu Fu.
+    Date: 2021-02-26
+-->
+
+<script src="../js/ujiuye.js"></script>
+<script src="../js/videoDetaildata.js"></script>
+<script src="../js/videoDetail.js"></script>
+
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            course: {},
+            coursedetailList: [],
+            cid: 0,//课程编号
+            id: 0, //课程详情编号
+            keyword:''
+        },
+        methods: {
+
+            //根据cid获取课程详情+课程明细集合
+            load_data(cid) {
+                axios.get('http://localhost:8001/edu/course/' + cid)
+                    .then(res => {
+                        this.course = res.data.course;
+                        this.coursedetailList = res.data.coursedetailList;
+                    })
+            },
+            //跳转到视频播放页面
+            toVideoPlay(id) {
+                var username = localStorage.getItem("username");
+                if (username) {
+                    //跳转到视频播放页面
+                    location.href = "videoPlay.html?cid=" + this.cid + "&id=" + id;
+                } else {
+                    //用户未登录，跳转到登录页面
+                    location.href = "loginAndRegister/login.html";
+                }
+            },
+            //跳转到搜索页面
+            toSearch() {
+                location.href = "./search.html?keyword=" + this.keyword;
+            },
+            //购买课程
+            toSaleCourse() {
+                //获取当前登录用户名
+                var username = localStorage.getItem("username");
+                if (username) {
+                    var formData = new FormData();
+                    formData.append("cid", this.cid);
+                    formData.append("username", username);
+                    //用户登录成功，就可以进行课程购买
+                    axios.post('http://localhost:8001/edu/course-user/', formData)
+                        .then(res => {
+                            if (res.data == 'success') {
+                                alert("购买课程成功");
+                                //跳转到用户购买页面
+                                location.href = "course.html";
+                            } else if (res.data == "error") {
+                                alert("用户已购买该课程")
+                            } else if (res.data == "null") {
+                                alert("课程购买失败")
+                            }
+                        })
+                } else {
+                    alert("用户未登录不能购买课程");
+                    location.href = "loginAndRegister/login.html";
+                }
+            }
+        },
+        created() {
+            //捕获当前uri http://localhost:63342/uxue-edu-web001/pages/online.html?typeId=1
+            console.log(location.href)
+            var url = location.href;
+            var split = url.split("?");
+            //访问数组第2个 typeId=1
+            var parm = split[1];
+            var split2 = parm.split("=");
+            var cid = split2[1];
+            console.log("cid:" + cid)
+
+            this.cid = cid;
+
+            //调用方法
+            this.load_data(cid);
+
+        }
+    })
+</script>
+</body>
+
+</html>

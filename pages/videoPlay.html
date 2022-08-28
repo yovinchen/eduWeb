@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频详情</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2384888_ojge9md3tr.css
+    ">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/videoPlay.css">
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.min.js"></script>
+
+</head>
+
+<body>
+<em id="app">
+    <!-- 导航菜单 -->
+    <nav>
+        <div class="main">
+            <img src="../img/public/logo.png" alt="" class="logo">
+            <ul>
+                <li><a href="../index.html">首页</a></li>
+                <li><a href="./online.html?typeId=1">Java</a></li>
+                <li><a href="./online.html?typeId=2">Mysql</a></li>
+                <li><a href="./online.html?typeId=3">Web</a></li>
+            </ul>
+            <div class="search">
+                <div class="left">课程<i class="iconfont icon-down"></i>
+                </div>
+                <input type="text" v-model="keyword" placeholder="搜索感兴趣的内容">
+                <img src="../img/public/search.png" @click="toSearch()" alt="">
+            </div>
+            <div class="login">
+                <a href="./loginAndRegister/login.html">登陆</a>
+                /
+                <a href="./loginAndRegister/register.html">注册</a>
+            </div>
+            <div class="user">
+                <img src="../img/login/user.png" alt="">
+                <div class="userlist">
+                    <ul>
+                        <li>我是用户名</li>
+                        <li>课程中心</li>
+                        <li>订单中心</li>
+                        <li>资金管理</li>
+                        <li>个人中心</li>
+                        <li class="out">退出登陆</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="all">
+        <div class="crumbs">
+            <span>首页</span>
+            <span>></span>
+            <span>同步课堂</span>
+            <span>></span>
+            <span>视频详情</span>
+        </div>
+    </div>
+    <!-- 主体内容 -->
+    <main>
+        <div class="classDetail">
+            <div class="left">
+
+                <video :src="'http://localhost:63342/uxue-edu-web001'+playcourse.url" controls></video>
+                <i class="iconfont icon-bofang"></i>
+            </div>
+            <div class="right">
+                <p class="top">
+                    <span class="active">目录</span><span>讨论</span>
+                </p>
+                <div class="content active">
+                    <div class="list">
+                        <p class="title">{{course.courseName}}</p>
+                        <ul class="list">
+                            <li :class="id==cs.id?'active':''" v-for="cs in coursedetailList"
+                                @click="selectPlayVideo(cs.id)">
+                                <span>{{cs.name}}</span>
+                                <i class="iconfont icon-bofang"></i>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="content">
+                    <textarea name="" cols="30" rows="10" maxlength="100" class="txt"></textarea>
+                    <button class="push">发布</button>
+                    <div class="scroll">
+                        <ul class="comment">
+                            <li>
+                                <p>
+                                    <img src="../img/login/wx.png" alt="">
+                                    <span>哈哈哈哈哈</span>
+                                    <span>21:12</span>
+                                </p>
+                                <p>这是一个无营养的评价</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row introduce">
+            <!-- <p>授课师资</p>
+            <div class="left">
+                <p class="img">
+                    <img src="" alt="">
+                </p>
+                <p class="right">
+                    <span>李晓明</span>
+                    <span>小U课堂高级讲师</span>
+                </p>
+
+            </div>
+            <div class="right">
+                多年IT行业从业经验，精通常用的Web开发技术;熟悉主流的CMS、商城、论坛 等PHP开源产品，具有丰富的建站及二次开发经验，多个大型ERP系统的开发实践经验;精通常用的PHP开发框架，对服务器架构及服务器日常运维等方面有一 定的研究。
+            </div> -->
+        </div>
+        <div class="row title">
+            <span class="active">课程目录</span><span>课程详情</span>
+        </div>
+        <div class="classlist active">
+            <div class="content">
+                <div class="detail">
+                    <p class="title">{{course.courseName}}<i class="iconfont icon-top1"></i></p>
+                    <ul class="active">
+                        <li v-for="cs in coursedetailList" @click="selectPlayVideo(cs.id)">
+                            <p>
+                                <i class="iconfont icon-bofang"></i>
+                                <span>{{cs.name}}</span>
+                            </p>
+                            <p>
+                                <span>{{cs.start_data}}开播</span>
+                                <span class="start">播放视频</span>
+                            </p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom">
+                <span class="seeAll">点击展开查看全部</span>
+            </div>
+        </div>
+        <div class="classlist">
+            <img src="../img/videoDetail/detail.png" alt="">
+        </div>
+    </main>
+</em>
+<footer>
+    <div class="cont">
+        <div class="main">
+            <p>
+                首页 | 关于我们 | 加入我们 | 合作专区 | 联系我们 | AI开放平台 | 意见反馈 | 漏洞提交 | 隐私政策 | 版权声明 | 反盗链声明 | 网上有害信息举报 | 备案公示 | 营业执照
+                | 教师资格证公示
+
+            </p>
+            <p>
+                京ICP备 13030888号 Copyright © 2014-2019 行者信息科技（北京）有限公司 | 地址：北京市新华区马当路388号C座 | 电话：010-66666666 | 京公网安备
+                01010102002533号
+            </p>
+            <p>
+                京网文〔2018〕4086-308号 | 网络文化经营许可证：沪网文[2018]4086-308号 | 增值电信业务经营许可证：京B2-20150021 |
+                食品经营 许可证：JY13101140088888
+            </p>
+            <p>医疗器械经营许可证：京嘉食药监械经营许20188008号 | 互联网药品信息服务资格证书：(京)-经营性-2018-0011 |</p>
+        </div>
+    </div>
+</footer>
+
+<div class="pos">
+    <div class="login">
+        <span class="close iconfont icon-close"></span>
+        <img src="../img/login/loginlogo.png" alt="">
+        <ul>
+            <li></li>
+            <li class="phone">使用手机号登陆</li>
+            <li></li>
+        </ul>
+        <input type="text" name="" id="" placeholder="请输入您的手机号">
+        <input type="password" name="" id="" placeholder="请输入密码">
+        <button class="loginbtn">
+            登陆
+        </button>
+        <p>
+            <span><a href="javascript:;">忘记密码</a></span>
+            <span>
+                    还没有账号?
+                    <a href="javascript:;">点击注册</a>
+                </span>
+        </p>
+        <ul>
+            <li></li>
+            <li class="phone">使用第三方软件登录</li>
+            <li></li>
+        </ul>
+        <p class="getCenter">
+            <img src="../img/login/wx.png" alt=""><img src="../img/login/qq.png" alt=""><img
+                src="../img/login/sina.png" alt="">
+        </p>
+    </div>
+</div>
+
+<!--
+    Create by Shuangyu Fu.
+    Date: 2021-02-26
+-->
+
+<script src="../js/ujiuye.js"></script>
+<script src="../js/videoPlayData.js"></script>
+<script src="../js/videoPlay.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            course: {},
+            coursedetailList: [],
+            cid: 0,
+            id: 0,
+            playcourse: {}
+        },
+        methods: {
+
+            //根据课程编号，获取对应课程信息+课程详情集合
+            load_data(cid) {
+                axios.get('http://localhost:8001/edu/course/' + cid)
+                    .then(res => {
+                        this.course = res.data.course;
+                        this.coursedetailList = res.data.coursedetailList;
+                        //比对当前播放视频
+                        this.load_playcourse();
+                    })
+            },
+            //获取当前正在播放的课程信息
+            load_playcourse() {
+                //循环遍历课程详情集合
+                for (let i = 0; i < this.coursedetailList.length; i++) {
+                    if (this.coursedetailList[i].id == this.id) {
+                        //设置当前播放对象
+                        this.playcourse = this.coursedetailList[i];
+                        console.log(this.playcourse)
+                    }
+                }
+            },
+            //切换播放视频内容
+            selectPlayVideo(id) {
+                location.href = "videoPlay.html?cid=" + this.cid + "&id=" + id;
+            },
+            //跳转到搜索页面
+            toSearch() {
+                location.href = "./search.html?keyword=" + this.keyword;
+            }
+
+        },
+        created() {
+            //判断用户是否登录
+            var username = localStorage.getItem("username");
+            if (!username) {
+                alert("用户登录后才能播放");
+                location.href = "loginAndRegister/login.html";
+            }
+            //获取当前浏览器访问url地址
+            //http://localhost:63342/uxue-edu-web001/pages/videoPlay.html?cid=3&id=1
+            var url = location.href;
+            //使用？切开
+            var curl = url.split("?");
+            //提取？后面内容  cid=3&id=1
+            var arrs = curl[1].split("&");
+            //定义一个json对象
+            var myjson = {};
+            //遍历arrs数组
+            for (let i = 0; i < arrs.length; i++) {
+                //提取数组各个元素 cid=3
+                let key = arrs[i].split("=")[0];
+                let value = arrs[i].split("=")[1];
+                //把内容存入json对象
+                myjson[key] = value;
+            }
+
+            console.log("cid:" + myjson.cid + " id:" + myjson.id);
+
+            //把读取到cid、id设置到本地变量
+            this.cid = myjson.cid;
+            this.id = myjson.id;
+            //调用获取数据方法
+            this.load_data(this.cid);
+
+
+        }
+    })
+</script>
+</body>
+
+</html>

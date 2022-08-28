@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/register.css" />
+    <script src="../../js/vue.js"></script>
+    <script src="../../js/axios.min.js"></script>
+</head>
+
+<body>
+<q id="app">
+    <div class="pos">
+        <div class="login">
+            <span class="close iconfont icon-close"></span>
+            <img src="../../img/login/loginlogo.png" alt="">
+            <ul>
+                <li></li>
+                <li class="phone">使用手机号登陆</li>
+                <li></li>
+            </ul>
+
+                <input type="text" name="tel" id="" v-model="form.phone" placeholder="请输入您的手机号">
+                <em></em>
+                <input type="password" name="pass" id="" v-model="form.password" placeholder="请输入密码">
+                <em></em>
+                <input type="password" name="pass2" id="" v-model="form.repassword" placeholder="请再次输入密码">
+                <em></em>
+
+                <em></em>
+                <div class="clear"></div>
+                <button class="loginbtn" @click="save()">注册</button>
+
+            <input type="checkbox" class="xuanze"/>
+            <p>
+                <span><a href="javascript:;">我同意 《用户使用协议》</a></span>
+                <span>
+                    已有账号
+                    <a href="./login.html">去登陆</a>
+                </span>
+            </p>
+        </div>
+    </div>
+</q>
+    <script src="../../utils/utils.js"></script>
+    <script src="../../js/register.js"></script>
+<script>
+    var app=new Vue({
+        el:"#app",
+        data:{
+           form:{
+               phone:'',
+               password:'',
+               repassword:''
+
+           }
+        },
+        methods:{
+
+            //注册保存方法
+            save(){
+                var formData=new FormData();
+                //遍历formjson对象
+                for(let key in this.form){
+                    formData.append(key,this.form[key]);
+                }
+                console.log(formData);
+                //发出请求
+                axios.post('http://localhost:8001/edu/user/',formData)
+                     .then(res=>{
+                         alert("用户注册:"+res.data);
+                         //跳转到首页
+                         location.href="../../index.html";
+                     }).catch(err=>{
+                         console.log(err)
+                })
+            }
+
+        }
+    })
+</script>
+</body>
+</html>

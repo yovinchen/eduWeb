@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账户设置</title>
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2384888_ojge9md3tr.css
+    ">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/userSeting.css">
+</head>
+
+<body>
+    <!-- 导航菜单 -->
+    <nav>
+        <div class="main">
+            <img src="../img/index/logo.png" alt="" class="logo">
+            <ul class="">
+                <li class="check"><a href="../index.html">首页</a></li>
+                <li><a href="./online.html?typeId=1">JAVA</a></li>
+                <li><a href="./online.html?typeId=2">Mysql</a></li>
+                <li><a href="./online.html?typeId=3">Web</a></li>
+            </ul>
+            <div class="search">
+                <div class="left">课程<i class="iconfont icon-down"></i>
+                </div>
+                <input type="text" placeholder="搜索感兴趣的内容">
+                <img src="../img/index/search.png" alt="">
+            </div>
+            <div class="user">
+                <img src="../img/login/user.png" alt="">
+                <div class="userlist">
+                    <ul>
+                        <li>我是用户名</li>
+                        <li>课程中心</li>
+                        <li><a href="./product.html">订单中心</a></li>
+                        <li>资金管理</li>
+                        <li><a href="./userSeting.html">个人中心</a></li>
+                        <li class="out">退出登陆</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 主体内容 -->
+    <main>
+        <div class="leftNav" id="leftNav">
+            <ul>
+                <li class="list">
+                    <p class="class">
+                        <span>课程中心</span>
+                        <i><img src="../img/userSet/ico2.gif" /></i>
+                    </p>
+                    <ol>
+                        <li class="select"><a href="./course.html">我的课程</a></li>
+                        <li class="select">我的练习</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="order">
+                        <span>订单中心</span>
+                        <i><img src="../img/userSet/ico2.gif" /></i>
+                    </p>
+                    <ol>
+                        <li class="select">我的订单</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="money">
+                        <span>资金管理</span>
+                        <i><img src="../img/userSet/ico2.gif" /></i>
+                    </p>
+                    <ol>
+                        <li class="select">我的钱包</li>
+                        <li class="select">优惠券</li>
+                    </ol>
+                </li>
+                <li class="list">
+                    <p class="center">
+                        <span>个人中心</span>
+                        <i><img src="../img/userSet/ico2.gif" /></i>
+                    </p>
+                    <ol>
+                        <li class="select active">账户设置</li>
+                        <li class="select">我的消息</li>
+                        <li class="select">我的评价</li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+        <div class="rightUser">
+            <div class="title_top">
+                <span>账户设置</span>
+                <span>&gt;</span>
+                <span>个人中心</span>
+            </div>
+            <div class="title_center">
+                <span>学员档案</span>
+                <span>安全设置</span>
+            </div>
+            <div class="content_show">
+                <div class="my_icon">
+                    <span>头像</span>
+                    <a href="javascript:;">
+                        <img src="../img/login/user.png" class="myIcon"/>
+                        <div class="change">
+                            更换头像
+                            <input type="file" class ="btn_file"/>
+                        </div>
+                    </a>
+                </div>
+                <div class="my_name">
+                    <div class="my_name_left">
+                        <span>真实姓名</span>
+                        <input type="text" name="username" id="" placeholder="方便老师联系你，只能修改一次哦～">
+                    </div>
+                    <div class="my_name_right">
+                        <span>昵称</span>
+                        <input type="text" name="user_name" id="">
+                    </div>
+                </div>
+                <div class="my_sex">
+                    <div class="my_name_left">
+                        <span>学员性别</span>
+                        <label for=""><input type="radio" name="sex" id=""><span>男</span></label>
+                        <label for=""><input type="radio" name="sex" id=""><span>女</span></label>
+                    </div>
+                    <div class="my_name_right">
+                        <span>生日</span>
+                        <input type="text" name="user_name" id="">
+                    </div>
+                </div>
+                <div class="my_phone">
+                    <div class="my_name_left">
+                        <span>联系方式</span>
+                        187****2528
+                        <a>修改手机号请到「安全设置」</a>
+                    </div>
+                    <div class="my_name_right">
+                        <span>所在城市</span></span>
+                        <input type="text" name="user_name" id="">
+                    </div>
+                </div>
+                <div class="my_learn">
+                    <div class="my_name_left">
+                        <span>学习阶段</span>
+                        <input type="text" name="username" id="">
+                        编辑学习阶段与兴趣标签，获得更好的课程推荐
+                    </div>
+                    <div class="my_name_right">
+                        保存
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+    </main>
+    <!-- 底部栏 -->
+    <footer>
+        <div class="cont">
+            <div class="main">
+                <p>
+                    首页 | 关于我们 | 加入我们 | 合作专区 | 联系我们 | AI开放平台 | 意见反馈 | 漏洞提交 | 隐私政策 | 版权声明 | 反盗链声明 | 网上有害信息举报 | 备案公示 | 营业执照
+                    | 教师资格证公示
+
+                </p>
+                <p>
+                    京ICP备 13030888号 Copyright © 2014-2019 行者信息科技（北京）有限公司 | 地址：北京市新华区马当路388号C座 | 电话：010-66666666 | 京公网安备
+                    01010102002533号
+                </p>
+                <p>
+                    京网文〔2018〕4086-308号 | 网络文化经营许可证：沪网文[2018]4086-308号 | 增值电信业务经营许可证：京B2-20150021 |
+                    食品经营许可证：JY13101140088888
+                </p>
+                <p>医疗器械经营许可证：京嘉食药监械经营许20188008号 | 互联网药品信息服务资格证书：(京)-经营性-2018-0011 |</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 固定导航 -->
+    <div class="fix">
+        <div class="lesson">
+            <img src="../img/index/mylesson.png" alt="">
+        </div>
+        <div class="test">
+            <img src="../img/index/mytest.png" alt="">
+        </div>
+        <div class="top">
+            <img src="../img/index/gotop.png" alt="">
+        </div>
+    </div>
+    <script src="../js/userSeting.js"></script>
+</body>
+
+</html>
